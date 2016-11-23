@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h1><CENTER>WELCOME LIBRARIAN</CENTER></h1>
+<div>
+	<h2>
+		For ADDING
+	</h2>
+	<form action="{% url 'portal:librarian' %}" method="POST">
+	{% csrf_token %}
+  BOOK :<br>
+  <input type="text" name="addbook">
+  <br>
+    <input type="text" name="addsect">
+  <br>
+  <input type="submit" value="ADD">
+</form>
+</div>
+<div style="align-items: right">
+	<h2>
+		For EDITING
+	</h2>
+	<form action="{% url 'portal:librarian' %}" method="POST">
+	{% csrf_token %}
+  <br>
+  OLD Name:
+  <input type="text" name="old_name">
+  <br>
+  NEW Name:
+  <input type="text" name="new_name">
+  <br>
+  <input type="submit" value="EDIT">
+</form>
+</div>
+<div style="align-items: right">
+	<h2>
+		For DELETING
+	</h2>
+	<form action="{% url 'portal:librarian' %}" method="POST">
+	{% csrf_token %}
+  BOOK:<br>
+  <input type="text" name="delbook">
+  <br>
+  <input type="submit" value="DELETE">
+</form>
+</div>
+</body>
+</html>

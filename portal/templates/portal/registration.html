@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<h1><CENTER>REGISTRATION PAGE</CENTER></h1>
+<div>
+  <h2>
+    For Librarian
+  </h2>
+  <form action="{% url 'portal:register' %}" method="POST">
+  {% csrf_token %}
+  First name:<br>
+  <input type="text" name="firstnamelib">
+  <br>
+  Last name:<br>
+  <input type="text" name="lastnamelib">
+  <br>
+  Password: <br>
+  <input type="password" name='passwordlib'>
+  <input type="submit" value="Submit">
+</form>
+</div>
+<div style="align-items: right">
+  <h2>
+    For Customers
+  </h2>
+  <form action="{% url 'portal:register' %}" method="POST">
+  {% csrf_token %}
+  First name:<br>
+  <input type="text" name="firstnamecust">
+  <br>
+  Last name:<br>
+  <input type="text" name="lastnamecust">
+  <br>
+  Password: <br>
+  <input type="password" name='passwordcust'>
+  <input type="submit" value="Submit">
+</form>
+</div>
+
+</body>
+</html>

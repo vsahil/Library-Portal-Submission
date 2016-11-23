@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h1><CENTER>WELCOME CUSTOMER</CENTER></h1>
+<div>
+	<h2>
+		BOOK REQUEST
+	</h2>
+	<form action="{% url 'portal:customer' %}" method="POST">
+	{% csrf_token %}
+  BOOK Name:<br>
+  <input type="text" name="book_name">
+  <br>
+  <input type="submit" value="REQUEST">
+</form>
+</div>
+<div style="align-items: right">
+	<h2>
+		For RETURNING
+	</h2>
+	<form action="{% url 'portal:customer' %}" method="POST">
+	{% csrf_token %}
+  <br>
+  BOOK Issued:<br>
+  <input type="text" name="book_issued">
+  <br>
+  <input type="submit" value="RETURN">
+</form>
+</div>
+<!-- <div style="align-items: right">
+	<h2>
+		For SORTING
+	</h2>
+	<form action="{% url 'portal:customer' %}" method="POST">
+	{% csrf_token %}
+  BOOK:<br>
+  <input type="text" name="delbook">
+  <br>
+  <input type="submit" value="DELETE">
+</form>
+</div> -->
+</body>
+</html>
