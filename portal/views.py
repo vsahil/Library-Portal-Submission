@@ -7,6 +7,7 @@ from django.conf import settings
 from datetime import datetime
 from django.db import connection
 
+
 user = ''			# Global variable for user
 
 def index(request):
@@ -103,22 +104,29 @@ def customer(request):
 	postobjects = request.POST.copy()
 	book_name=postobjects.get('book_name')
 	book_issued=postobjects.get('book_issued')
+	sortbook = postobjects.get('sortbook')
 	request_date = datetime.now()
 	cursor = connection.cursor()
 	lt = cursor.execute("Select issue_status from %s" % (user))		# user is the table name
 	cursor.close()
-	print lt, type(lt), "HELLO SIR", user
-	if book_issued == None and book_name != None:		# Request case
+
+	if book_issued == None and book_name != None and sortbook == None:		# Request case
 		c = books.objects.filter(bookname=book_name).count() 
 		if c != 0:				# Issue only one book to user
 			curs = connection.cursor()
 			curs.execute("Insert into %s VALUES (bookname=%s, request_date=%s, issue_status = %s);" %(user, book_name, request_date, 'Pending'))
 			curs.close()
 
-	else:						# Return Case
+	elif book_issued != None and book_name == None and sortbook == None:						# Return Case
 		curs = connection.cursor()
-		cusr.execute("delete from %s where bookname = %s;" % (user, str(book_issued)))
+		curs.execute("delete from %s where bookname = %s;" % (user, str(book_issued)))
 		curs.close()
+
+	elif sortbook != None and book_name == None and book_issued == None:		# Sort Case
+		curs = connection.cursor()
+		output = curs.execute("select * from %s where section = %s order by bookname;" % ('portal_books', str(sortbook)))
+		curs.close()
+		return HttpResponse(output)
 
 	return render(request, "portal/customer.html")
 
