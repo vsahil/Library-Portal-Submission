@@ -8,8 +8,7 @@ class login_librarian(models.Model):
 	lastname = models.CharField(max_length=200)
 	password = models.CharField(max_length=200)
 	reg_date = models.DateTimeField('date published')
-	# def __str__(self):
-		# return self.firstname
+
 
 class login_customer(models.Model):
 	"""docstring for login"""
